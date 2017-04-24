@@ -1,14 +1,8 @@
 package unimas.fcsit.foodieroute;
 
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Build;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -44,10 +38,10 @@ public class AsyncTokenSaveUpdate {
 
             new Dialog_AlertNotice(context,
                     r.string(R.string.s_dialog_title_fail),
-                    r.string(R.string.s_notif_msg_notif_token_unavailable))
+                    r.string(R.string.s_notif_msg_token_unavailable))
                     .setPositiveKey(
                             r.string(R.string.s_dialog_btn_ok), null);
-            new PushNotification(context).createNotification(r.string(R.string.s_notif_msg_notif_token_unavailable));
+            new PushNotification(context).createNotification(r.string(R.string.s_notif_msg_token_unavailable));
         } else {
             String deviceModel = Build.MODEL;
             String deviceUUID = pref.getString("FR_deviceUUID", "empty");
@@ -72,7 +66,7 @@ public class AsyncTokenSaveUpdate {
                 public void notifyHTTPSuccess(int code, String result) {
                     pd.dismiss();
                     new Dialog_AlertNotice(context, "Success", result).setPositiveKey("OK", null);
-                    new PushNotification(context).createNotification(ResFR.string(context, R.string.s_notif_msg_notif_token_log_in_update)+username);
+                    new PushNotification(context).createNotification(ResFR.string(context, R.string.s_notif_msg_token_log_in_update)+username);
                 }
 
                 @Override

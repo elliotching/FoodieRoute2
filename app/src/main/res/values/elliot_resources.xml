@@ -129,8 +129,11 @@
     <!--<string name="s_prgdialog_"></string>-->
 
     <!--Notification-->
-    <string name="s_notif_msg_notif_token_log_in_update">Notification services updated. You\'ve logged in as </string>
-    <string name="s_notif_msg_notif_token_unavailable">Notification services not available in your device.</string>
+    <string name="s_notif_msg_token_log_in_update">Notification services updated. You\'ve logged in as </string>
+    <string name="s_notif_msg_token_unavailable">Notification services not available in your device.</string>
+    <!-- NEW -->
+    <string name="s_notif_msg_been_logged_out">You have been logged out. Someone has logged in using this account.</string>
+    <string name="s_notif_msg_token_updated">Notification service has been updated.</string>
 
 
 

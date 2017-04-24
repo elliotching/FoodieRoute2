@@ -1,20 +1,13 @@
 package unimas.fcsit.foodieroute;
 
 import android.app.Activity;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -28,13 +21,9 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.loopj.android.http.RequestParams;
-
-import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Created by elliotching on 28-Jun-16.

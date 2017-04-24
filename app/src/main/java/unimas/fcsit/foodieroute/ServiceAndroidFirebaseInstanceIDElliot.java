@@ -19,7 +19,7 @@ import java.util.UUID;
 
 public class ServiceAndroidFirebaseInstanceIDElliot extends FirebaseInstanceIdService {
 
-    private static final String TAG = "MyAndroidFCMIIDService";
+    private final String TAG = this.getClass().getSimpleName();
     Context context = this;
     static SharedPreferences pref;
     static String deviceUUID;
@@ -30,7 +30,6 @@ public class ServiceAndroidFirebaseInstanceIDElliot extends FirebaseInstanceIdSe
 
     @Override
     public void onTokenRefresh() {
-        pref = context.getSharedPreferences("FoodieRoute", Context.MODE_PRIVATE);
 
         getAllPref();
 
@@ -54,6 +53,23 @@ public class ServiceAndroidFirebaseInstanceIDElliot extends FirebaseInstanceIdSe
 
     private void saveTokenToServer(String token) {
 
+        String notification = ResFR.string(context, R.string.s_notif_msg_token_updated);
+
+        String[][] data = {
+                {"pass", "!@#$"},
+                {"token", token},
+                {"deviceUUID", deviceUUID},
+                {"device", device},
+                {"username", username},
+                {"notification_data_body", notification}
+        };
+
+        if(username.equals("empty") || deviceUUID.equals("empty") || device.equals("empty")) {
+
+        }else{
+            new HTTP_POST(context, data, ResFR.URL_on_token_refresh);
+        }
+
         if (deviceUUID.equals("empty")) {
             SharedPreferences.Editor edit = pref.edit();
 
@@ -65,21 +81,10 @@ public class ServiceAndroidFirebaseInstanceIDElliot extends FirebaseInstanceIdSe
             edit.putString("FR_device", device);
             edit.commit();
         }
-
-        String[][] data = {
-                {"pass", "!@#$"},
-                {"token", token},
-                {"deviceUUID", deviceUUID},
-                {"device", device},
-                {"username", username}
-        };
-
-        if(!username.equals("empty")) { // username values
-            new HTTP_POST(context, data, ResFR.URL_on_token_refresh);
-        }
     }
 
     public void getAllPref() {
+        pref = context.getSharedPreferences("FoodieRoute", Context.MODE_PRIVATE);
         deviceUUID = pref.getString("FR_deviceUUID", "empty");
         device = pref.getString("FR_device", "empty");
         username = pref.getString("FR_username", "empty");
