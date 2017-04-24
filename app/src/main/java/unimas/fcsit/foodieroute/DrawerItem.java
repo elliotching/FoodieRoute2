@@ -17,9 +17,4 @@ public class DrawerItem {
         mItem = m;
     }
 
-    public DrawerItem(String m, Fragment f) {
-        mItem = m;
-        mFragment = f;
-    }
-
 }

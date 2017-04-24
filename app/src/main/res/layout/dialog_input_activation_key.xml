@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/text_view_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/s_label_dialog_input_activation_code"
+        android:textSize="@dimen/d_text_size_medium" />
+
+    <EditText
+        android:id="@+id/edit_text_activation_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Code: 000000"
+        android:inputType="number"
+        android:imeOptions="actionDone"
+        android:textSize="@dimen/d_text_size_medium" />
+
+    <TextView
+        android:id="@+id/text_view_check_junk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/d_text_size_medium"
+        android:text="@string/s_label_dialog_activation_check_junk_mail"/>
+
+</LinearLayout>

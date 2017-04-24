@@ -5,15 +5,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
-    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" />
-    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
-    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT" />
-    <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE" />
-    <uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE" />
-    <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT" />
-    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE" />
-    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <!--
@@ -22,16 +13,32 @@
          location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name="android.support.multidex.MultiDexApplication"
         android:allowBackup="true"
-        android:screenOrientation="portrait"
         android:icon="@drawable/logo_11"
         android:label="@string/fr_app_name"
         android:supportsRtl="true"
-        android:theme="@style/FR_AppTheme">
+        android:theme="@style/FR_AppThemeLight">
 
+
+
+        <!--
+            The API key for Google Maps-based APIs is defined as a string resource.
+            (See the file "res/values/google_maps_api.xml").
+            Note that the API key is linked to the encryption key used to sign the APK.
+            You need a different API key for each encryption key, including the release key that is used to
+            sign the APK for publishing.
+            You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <!--android:clearTaskOnLaunch="true"-->
+        <!--android:launchMode="singleTask"-->
         <activity
             android:name=".SplashScreen"
             android:screenOrientation="portrait"
@@ -43,31 +50,43 @@
             </intent-filter>
         </activity>
 
+        <!--android:screenOrientation="portrait"-->
         <activity
             android:name=".Foodie_main"
             android:screenOrientation="portrait"
-            android:theme="@style/FR_AppTheme"
             android:windowSoftInputMode="adjustPan" />
-        <!--
-             The API key for Google Maps-based APIs is defined as a string resource.
-             (See the file "res/values/google_maps_api.xml").
-             Note that the API key is linked to the encryption key used to sign the APK.
-             You need a different API key for each encryption key, including the release key that is used to
-             sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/.
-        -->
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".Add_Food"
-            android:screenOrientation="portrait"
-            android:theme="@style/FR_AppTheme"/>
+            android:name=".ActivityAddFood"/>
 
         <activity android:name=".ActivityRequestData"
-            android:screenOrientation="portrait"
-            android:theme="@style/FR_AppTheme" />
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".ActivityFirebaseResult"/>
+        <activity android:name=".ActivityPostHTTPDataFirebaseTest" />
+
+        <activity android:name=".ActivityFoodListingListViewElliot"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".ActivityFoodDetail"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".ActivitySetting"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".ActivitySignUp"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".ActivityMaps"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".ActivityNotification"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".ActivityPickImage"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ActivityCrop"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".ServiceAndroidFirebaseMessagingElliot">
@@ -82,10 +101,6 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>
         </service>
-
-        <activity android:name=".ActivityFirebaseResult"/>
-        <activity android:name=".ActivityPostHTTPDataFirebaseTest" />
-
-
     </application>
+
 </manifest>

@@ -8,6 +8,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Send To Firebase"
-        android:textAllCaps="false"/>
+        style="@style/style_for_default_button_and_text_size_no_theme"/>
 
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

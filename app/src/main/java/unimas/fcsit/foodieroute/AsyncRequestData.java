@@ -1,6 +1,5 @@
 package unimas.fcsit.foodieroute;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -27,14 +26,9 @@ public class AsyncRequestData {
     private static final String urlString = "http://foodlocator.com.my/mobile/test_s.php";
     static InterfaceAsyncRequestData activityRequestData = null;
     static AsyncHttpClient client;
-    static ProgressDialog progressDialog;
 
     public static void makeHTTPCall(Context context, String dialogMsg, RequestParams postParams) {
-        progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage(dialogMsg);
-        progressDialog.setCancelable(false);
-        progressDialog.setOnKeyListener(new ActivityRequestData.BackKey());
-        progressDialog.show();
+
         client = new AsyncHttpClient();
         // Don't forget to change the IP address to your LAN address. Port no as well.
         client.post(urlString, postParams, new MyJsonHttpRespondHandler());
@@ -65,9 +59,5 @@ public class AsyncRequestData {
             activityRequestData.getArrayListJSONResult(arrayList);
         }
 
-        @Override
-        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-            super.onSuccess(statusCode, headers, response);
-        }
     }
 }

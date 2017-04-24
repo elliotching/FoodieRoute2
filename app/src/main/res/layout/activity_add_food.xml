@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_add_food"
+        style="@style/toolbar_style"
+        app:title="@string/s_title_toolbar_activity_add_food" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/d_margin_activity_border">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!--&lt;!&ndash; height is not really 1 dp, java code has been manipulated the value&ndash;&gt;-->
+            <!--<ImageView-->
+            <!--android:id="@+id/imageview"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:src="@mipmap/empty_image"-->
+            <!--android:scaleType="centerInside"/>-->
+
+            <!--&lt;!&ndash; This is the text view only set when image picked. show image file name.&ndash;&gt;-->
+            <!--<TextView-->
+            <!--android:id="@+id/textview_show_image_name"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textSize="@dimen/d_text_size_small"/>-->
+
+            <!--<Button-->
+            <!--android:id="@+id/button_capture"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/s_button_capture" />-->
+
+            <!--<Button-->
+            <!--android:id="@+id/button_pick_content"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/s_button_pick_image" />-->
+
+            <!-- 12345 WARNIGN: CHANGE STRING  -->
+            <!--<Button-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/button_upload"-->
+            <!--android:text="Upload"/>-->
+
+            <!--Food Image-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:text="@string/s_label_form_food_image"
+                    android:textSize="@dimen/d_text_size_medium" />
+
+                <Button
+                    android:id="@+id/button_pick"
+                    style="@style/style_for_default_button_and_text_size_no_theme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:text="@string/s_button_no_image_choosen" />
+            </LinearLayout>
+
+
+            <!--FOOD NAME-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:text="@string/s_label_form_food_name_activity_add_food"
+                    android:textSize="@dimen/d_text_size_medium" />
+
+                <EditText
+                    android:id="@+id/edittext_food_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:gravity="center_vertical"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:textSize="@dimen/d_text_size_medium" />
+            </LinearLayout>
+
+            <!-- Price -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:text="@string/s_label_form_food_price_activity_add_food"
+                    android:textSize="@dimen/d_text_size_medium" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="RM"
+                        android:textSize="@dimen/d_text_size_medium" />
+
+                    <EditText
+                        android:id="@+id/edittext_food_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:textSize="@dimen/d_text_size_medium" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <!-- Food Type -->
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:weightSum="10">-->
+
+            <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="3"-->
+            <!--android:ellipsize="end"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:text="@string/s_label_form_food_type_activity_add_food"-->
+            <!--android:textSize="@dimen/d_text_size_medium" />-->
+
+            <!--<EditText-->
+            <!--android:id="@+id/edittext_food_name"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="7"-->
+            <!--android:imeOptions="actionDone"-->
+            <!--android:inputType="text"-->
+            <!--android:textSize="@dimen/d_text_size_medium" />-->
+
+            <!--</LinearLayout>-->
+
+            <!-- Location -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:text="@string/s_label_form_food_location_activity_add_food"
+                    android:textSize="@dimen/d_text_size_medium" />
+
+                <!--<EditText-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="7"-->
+                <!--android:textSize="@dimen/d_text_size_small"-->
+                <!--android:imeOptions="actionNext" />-->
+
+                <Button
+                    android:id="@+id/button_choose_location"
+                    style="@style/style_for_default_button_and_text_size_no_theme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:text="@string/s_button_no_location_choosen" />
+
+                <Button
+                    android:id="@+id/button_choose_location_2"
+                    style="@style/style_for_disabled_button_map"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:text="@string/s_button_no_location_choosen" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="16dp"/>
+
+            <CheckBox
+                android:id="@+id/checkbox_mobile_seller"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/s_checkbox_im_moving_everyday"
+                android:textSize="@dimen/d_text_size_small"
+                android:checked="false"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="16dp"/>
+
+            <Button
+                android:id="@+id/button_submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/style_for_coloured_button_and_text_size"
+                android:text="@string/s_button_submit" />
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:weightSum="10">-->
+
+            <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="3"-->
+            <!--android:ellipsize="end" />-->
+
+            <!--<EditText-->
+            <!--android:layout_width="0dp"-->
+            <!--android:imeOptions="actionNext"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="7" />-->
+
+            <!--</LinearLayout>-->
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

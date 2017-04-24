@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "unimas.fcsit.foodieroute"
         minSdkVersion 10
-        targetSdkVersion 22
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -29,7 +29,18 @@ dependencies {
     compile 'com.google.android.gms:play-services:9.6.1'
     compile 'com.google.firebase:firebase-messaging:9.0.2'
 //    compile 'com.google.firebase:firebase-core:9.0.2'
+
+    // image cropper
+    compile 'com.theartofdev.edmodo:android-image-cropper:2.3.1'
+
+    // Async image loader from web
+    compile 'com.koushikdutta.ion:ion:2.1.9'
+
+    //to use AsyncTask
     compile 'com.loopj.android:android-async-http:1.4.9'
+
+    //to unescape UTF-8 Unicode Character, i.e. convert '\u5c3d' to '尽'.
+    compile 'org.apache.commons:commons-lang3:3.5'
 }
 
 apply plugin: 'com.google.gms.google-services'

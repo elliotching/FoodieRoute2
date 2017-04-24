@@ -3,16 +3,23 @@
 <!--COLOR-->
     <!-- color-code-light : 00ffe7 -->
     <color name="c_light_cyan">#00ffe7</color>
-    <color name="c_dark_cyan">#009688</color>
-    <color name="c_yellow">#FFFF00</color>
-    <color name="c_sdark_cyan">#004942</color>
-    <color name="c_pale_cyan">#affff8</color>
+    <color name="c_dark_cyan">#008073</color>
+    <color name="c_yellow">#ffff8d</color>
 
-    <color name="c_t_light_cyan">#8800ffe7</color>
-    <color name="c_t_vlight_cyan">#1000ffe7</color>
+    <color name="c_yellow_cyan">#7fff7f</color>
+    <color name="c_sdark_cyan">#00423c</color>
+    <color name="c_pale_cyan">#c2fff9</color>
+
+    <color name="c_t_light_cyan">#5500ffe7</color>
     <color name="c_vt_dark_cyan">#50032521</color>
-    <color name="c_t_dark_cyan">#55009688</color>
-    <color name="c_t_sdark_cyan">#8800796b</color>
+    <!--<color name="c_t_vlight_cyan">#1000ffe7</color>-->
+    <!--<color name="c_vt_dark_cyan">#55032521</color>-->
+    <color name="c_t_dark_cyan">#55008073</color>
+    <color name="c_t_sdark_cyan">#5500423c</color>
+    <color name="c_t_pale_cyan">#55c2fff9</color>
+    <color name="c_transparent">#00000000</color>
+    <color name="c_t_grey">#80808080</color>
+
     <!--<color name="drawer">#D0009688</color>-->
     <!--<color name="drawer_header">#004d40</color>-->
     <!--<color name="material_indigo">#303F9F</color>-->
@@ -41,20 +48,89 @@
     <string name="s_todoitem">TodoItem</string>
     <string name="s_student">Student</string>
 
+    <!--Nav. Drawer Items' Names-->
     <string name="s_item1">Login</string>
     <string name="s_item2_map">Map</string>
     <string name="s_item3_rec_view">Food Listing</string>
     <string name="s_item4_dev">For Developer</string>
     <string name="s_item5_loadimage">Developer: Firebase Cloud Messanging (Broadcast)</string>
-    <string name="s_username">Username</string>
-    <string name="s_password">Password</string>
-    <string name="s_login">Log In</string>
-    <string name="s_title_activity_maps">FoodieRoute Map</string>
-    <string name="s_title_label_add_food">Add Food</string>
-    <string name="s_food_form_name">Food Name:</string>
-    <string name="s_food_form_price">Price:</string>
-    <string name="s_food_form_type">Food Type:</string>
-    <string name="s_food_form_location">Location:</string>
+    <string name="s_item6_setting">Settings</string>
+
+    <!--Hints for EditText-->
+    <string name="s_hint_login_edit_text_username">Username</string>
+    <string name="s_hint_login_edit_text_email">Email</string>
+    <string name="s_hint_login_edit_text_password">Password</string>
+    <string name="s_hint_login_edit_text_confirm_password">Confirm Password</string>
+
+    <!--Label(TextView)-->
+    <string name="s_label_form_food_name_activity_add_food">Food Name:</string>
+    <string name="s_label_form_food_price_activity_add_food">Price:</string>
+    <string name="s_label_form_food_type_activity_add_food">Food Type:</string>
+    <string name="s_label_form_food_location_activity_add_food">Location:</string>
+    <string name="s_label_setting_theme_activity_setting">Theme:</string>
+    <string name="s_label_dialog_input_activation_code">Please enter the activation code below:</string>
+    <string name="s_label_dialog_activation_check_junk_mail">*Please check the SPAM / JUNK mailbox.</string>
+    <string name="s_label_form_food_image">Food Image:</string>
+
+    <!--Button + Title(Toolbar)-->
+    <string name="s_button_login_activity_log_in">Log in</string>
+    <string name="s_title_toolbar_activity_maps">FoodieRoute Map</string>
+    <string name="s_title_toolbar_activity_add_food">Add Food</string>
+    <string name="s_title_toolbar_activity_food_detail">Food Detail</string>
+    <string name="s_button_locate_me_activity_food_detail">Locate me</string>
+    <string name="s_light_theme_activity_setting">Light Theme</string>
+    <string name="s_dark_theme_activity_setting">Dark Theme</string>
+    <string name="s_title_toolbar_activity_setting">Settings</string>
+    <string name="s_title_toolbar_activity_sign_up">Sign up</string>
+    <string name="s_title_activity_sign_up">Sign up: </string>
+    <string name="s_button_submit">Submit</string>
+    <string name="s_button_sign_up_activity_log_in">Sign up</string>
+    <string name="s_button_no_location_choosen">No location choosen.</string>
+    <string name="s_button_no_image_choosen">No image choosen.</string>
+    <string name="s_button_capture">Capture image</string>
+    <string name="s_button_pick_image">Choose from gallery</string>
+    <string name="s_button_save_location">Save Location</string>
+    <string name="s_button_save_confirm_image">Confirm Image</string>
+
+    <!--CheckBox-->
+    <string name="s_checkbox_im_moving_everyday">I\'m moving around everyday.</string>
+
+    <!--WARNING MESSAGE-->
+    <string name="s_dialog_msg_location_not_granted">Location is not allowed. Please enable it in settings. You are now quit from this map.</string>
+    <string name="s_dialog_btn_ok">OK</string>
+    <string name="s_dialog_btn_cancel">Cancel</string>
+    <string name="s_dialog_title_fail">Failed</string>
+    <string name="s_dialog_title_result">Result</string>
+    <string name="s_dialog_title_success">Success</string>
+    <string name="s_dialog_title_nothing_here">Nothing Here</string>
+    <string name="s_dialog_msg_to_be_implement">To be implement soon.</string>
+    <string name="s_dialog_title_warning">Warning</string>
+    <string name="s_dialog_msg_not_logged_in">You are not logged in.</string>
+
+    <!--Progress Dialog MSG-->
+    <string name="s_prgdialog_sending_msg">Sending...</string>
+    <string name="s_prgdialog_retrieving_all_token">Retrieving all logged in users...</string>
+    <string name="s_prgdialog_submitting_signup_form">Submitting form...</string>
+    <string name="s_prgdialog_update_token">Update notification service...</string>
+
+    <!--Progress Dialog TITLE-->
+    <string name="s_prgdialog_title_noti_service">Notification Services</string>
+    <string name="s_prgdialog_title_send_msg">Send Message</string>
+    <string name="s_prgdialog_title_load_user">Load Users</string>
+    <string name="s_prgdialog_title_sign_up">Sign Up</string>
+    <!--<string name="s_prgdialog_"></string>-->
+    <!--<string name="s_prgdialog_"></string>-->
+    <!--<string name="s_prgdialog_"></string>-->
+    <!--<string name="s_prgdialog_"></string>-->
+    <!--<string name="s_prgdialog_"></string>-->
+    <!--<string name="s_prgdialog_"></string>-->
+    <!--<string name="s_prgdialog_"></string>-->
+    <!--<string name="s_prgdialog_"></string>-->
+    <!--<string name="s_prgdialog_"></string>-->
+
+    <!--Notification-->
+    <string name="s_notif_msg_notif_token_log_in_update">Notification services updated. You\'ve logged in as </string>
+    <string name="s_notif_msg_notif_token_unavailable">Notification services not available in your device.</string>
 
 
 
@@ -64,15 +140,19 @@
 
 
 
-
-<!--DIMENSION-->
-    <dimen name="marginS">16dp</dimen>
+    <!--DIMENSION-->
+    <dimen name="d_margin_activity_border">16dp</dimen>
     <dimen name="d_elliot_action_bar_size">48dp</dimen>
-    <dimen name="d_margin_inside_drawer">5dp</dimen>
-    <dimen name="d_list_view_item_height">50dp</dimen>
-    <dimen name="d_text_size_small">12sp</dimen>
-    <dimen name="d_text_size_medium">24sp</dimen>
-    <dimen name="d_text_size_large">48sp</dimen>
+    <dimen name="d_margin_for_text_view">16dp</dimen>
+    <dimen name="d_margin_inside_drawer">16dp</dimen>
+    <dimen name="d_margin_left_right_for_multiple_edit_text">24dp</dimen>
+    <dimen name="d_margin_top_bottom_for_multiple_edit_text">8dp</dimen>
+    <dimen name="d_padding_msg_border_alert_dialog">24dp</dimen>
+    <!--<dimen name="d_list_view_item_height">50dp</dimen>-->
+    <dimen name="d_text_size_small">16sp</dimen>
+    <dimen name="d_text_size_medium">20sp</dimen>
+    <dimen name="d_text_size_medium_large">24sp</dimen>
+    <dimen name="d_text_size_large">32sp</dimen>
 
 
 
@@ -86,54 +166,108 @@
 <!--THEME AND STYLE-->
     <!-- Base application theme. -->
     <!-- White & no Action Bar -->
-    <style name="FR_AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="FR_AppThemeLight" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/c_dark_cyan</item>
         <item name="colorPrimaryDark">@color/c_sdark_cyan</item>
         <item name="colorAccent">@color/c_dark_cyan</item>
         <item name="android:textColor">@color/c_sdark_cyan</item>
+        <item name="android:radioButtonStyle">@style/MyRadioButtonLight</item>
         <item name="android:textAllCaps">false</item>
     </style>
 
-    <!--
-    Dark theme
-    No action bar
-    TextColor DARK -->
+
+    <!-- Dark theme / No action bar / TextColor DARK -->
     <style name="AppThemeDark" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/c_dark_cyan</item>
         <item name="colorPrimaryDark">@color/c_sdark_cyan</item>
-        <item name="colorAccent">@color/c_dark_cyan</item>
+        <item name="colorAccent">@color/c_light_cyan</item>
+        <item name="android:textColor">@color/c_pale_cyan</item>
+        <item name="android:radioButtonStyle">@style/MyRadioButtonDark</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+
+    <style name="toolbar_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/d_elliot_action_bar_size</item>
+        <item name="android:minHeight">@dimen/d_elliot_action_bar_size</item>
+        <item name="titleTextColor">@color/c_pale_cyan</item>
+        <!--<item name="android:elevation">2dp</item>-->
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:theme">@style/app_bar_white_text_elliot</item>
+    </style>
+
+
+    <!--Radio button text does not change according to main theme, have to change explicitly-->
+    <style name="MyRadioButtonLight" parent="@android:style/Widget.CompoundButton.RadioButton">
         <item name="android:textColor">@color/c_sdark_cyan</item>
     </style>
-
-
-    <style name="ElliotToolbarStyle">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">48dp</item>
-        <item name="android:minHeight">48dp</item>
-        <item name="titleTextColor">@color/c_pale_cyan</item>
-        <item name="android:background">?attr/colorPrimary</item>
+    <style name="MyRadioButtonDark" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:textColor">@color/c_pale_cyan</item>
     </style>
 
 
-    <style name="ElliotAppBarWhiteText" parent="ThemeOverlay.AppCompat.Light">
+    <!--For TOOLBAR usage only: android:theme / toolbar.setPopupTheme-->
+    <!--LIGHT BACKGROUND / WHITE TEXT IN TOOLBAR-->
+    <style name="app_bar_white_text_elliot" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorControlNormal">@color/c_pale_cyan</item>
+    </style>
+    <!--DARK BACKGROUND / WHITE TEXT IN TOOLBAR-->
+    <style name="app_bar_white_text_dark_elliot" parent="ThemeOverlay.AppCompat.Dark">
         <item name="colorControlNormal">@color/c_pale_cyan</item>
     </style>
 
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
-<!--To change the drawer button / up button color-->
+    <!--<style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />-->
+
+
+    <!--To change the drawer button / up button color-->
     <style name="ElliotDrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="color">@color/c_pale_cyan</item>
+    </style>
+
+
+    <!-- COLOR BUTTON STYLE vs DEFAULT BUTTON STYLE-->
+    <style name="style_for_coloured_button_and_text_size">
+        <item name="android:theme">@style/ElliotColoredButton</item>
+        <item name="android:textSize">@dimen/d_text_size_small</item>
+    </style>
+
+    <style name="style_for_default_button_and_text_size_no_theme">
+        <item name="android:textSize">@dimen/d_text_size_small</item>
+    </style>
+
+    <style name="style_for_disabled_button_map">
+        <item name="android:theme">@style/ElliotDisabledButton</item>
+        <item name="android:textSize">@dimen/d_text_size_small</item>
+    </style>
+
+
+
+
+
+
+    <style name = "style_margin_for_edit_text_multiple">
+        <item name="android:layout_marginBottom">@dimen/d_margin_top_bottom_for_multiple_edit_text</item>
+        <item name="android:layout_marginTop">@dimen/d_margin_top_bottom_for_multiple_edit_text</item>
+        <item name="android:layout_marginLeft">@dimen/d_margin_left_right_for_multiple_edit_text</item>
+        <item name="android:layout_marginRight">@dimen/d_margin_left_right_for_multiple_edit_text</item>
     </style>
 
 
     <style name="ElliotColoredButton" parent="Widget.AppCompat.Button">
         <item name="colorButtonNormal">@color/c_dark_cyan</item>
         <item name="android:textColor">@color/c_pale_cyan</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="ElliotDisabledButton" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/c_t_grey</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
 

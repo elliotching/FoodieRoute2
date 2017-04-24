@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_activity_sign_up"
+        style="@style/toolbar_style"
+        app:title="@string/s_title_toolbar_activity_sign_up" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/d_margin_activity_border">
+
+            <TextView
+                style="@style/style_margin_for_edit_text_multiple"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/s_title_activity_sign_up"
+                android:textSize="@dimen/d_text_size_medium" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/edit_text_username"
+                    style="@style/style_margin_for_edit_text_multiple"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/s_hint_login_edit_text_username"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:textSize="@dimen/d_text_size_medium" />
+
+                <EditText
+                    android:id="@+id/edit_text_email"
+                    style="@style/style_margin_for_edit_text_multiple"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/s_hint_login_edit_text_email"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:textSize="@dimen/d_text_size_medium" />
+
+                <EditText
+                    android:id="@+id/edit_text_password"
+                    style="@style/style_margin_for_edit_text_multiple"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/s_hint_login_edit_text_password"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword"
+                    android:textSize="@dimen/d_text_size_medium" />
+
+                <EditText
+                    android:id="@+id/edit_text_password_confirm"
+                    style="@style/style_margin_for_edit_text_multiple"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/s_hint_login_edit_text_confirm_password"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:textSize="@dimen/d_text_size_medium" />
+
+                <Button
+                    android:id="@+id/button_sign_up"
+                    style="@style/style_for_coloured_button_and_text_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="24dp"
+                    android:text="@string/s_button_submit" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

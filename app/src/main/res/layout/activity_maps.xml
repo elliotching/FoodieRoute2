@@ -8,13 +8,32 @@
     <!--tools:context="fcsit.makan_place.MapsActivity" />-->
 
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/toolbar_style"
+        app:title="@string/s_title_toolbar_activity_maps" />
+    <Button
+        android:id="@+id/button_save_location"
+        style="@style/style_for_default_button_and_text_size_no_theme"
+        android:text="@string/s_button_save_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-</RelativeLayout>
+
+
+    <!--<com.google.android.gms.maps.SupportMapFragment-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:id="@+id/map"/>-->
+
+</LinearLayout>

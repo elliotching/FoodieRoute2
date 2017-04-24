@@ -16,6 +16,10 @@
         android:id="@+id/check_token"
         android:title="Check Token" />
 
+    <item
+        android:id="@+id/screen"
+        android:title="Show Properties" />
+
     <!--<item-->
         <!--android:id="@+id/action_search"-->
         <!--android:icon="@drawable/abc_ic_search_api_mtrl_alpha"-->

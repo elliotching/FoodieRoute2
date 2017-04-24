@@ -1,5 +1,7 @@
 package unimas.fcsit.foodieroute;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
@@ -13,9 +15,13 @@ public class ActivityFirebaseResult extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        resetFCMCount();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_firebase);
+        setContentView(R.layout.activity_firebase_result);
         textView = (TextView)findViewById(R.id.textView1);
-        textView.setText("Welcome to the Result Activity");
+        String s="Message goes here.";
+        textView.setText(s);
     }
+
+
 }

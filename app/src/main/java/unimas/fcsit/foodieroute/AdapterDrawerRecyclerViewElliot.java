@@ -5,6 +5,7 @@ package unimas.fcsit.foodieroute;
  */
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +22,7 @@ public abstract class AdapterDrawerRecyclerViewElliot extends RecyclerView.Adapt
     int layoutResID;
     DrawerItemHolder mHolder;
 
-    public AdapterDrawerRecyclerViewElliot(Context context, int layoutResourceID,//R.layout.custom_drawer_item
+    public AdapterDrawerRecyclerViewElliot(Context context, int layoutResourceID,//R.layout.drawer_single_item_layout_foodie_main
                                            List<DrawerItem> listItems) {
         super();
         this.context = context;
@@ -44,7 +45,13 @@ public abstract class AdapterDrawerRecyclerViewElliot extends RecyclerView.Adapt
         mHolder.mText.setText(drawerItemList.get(position).mItem);
 
         mHolder.mBackground = (LinearLayout) mHolder.mView.findViewById(R.id.m_drawer_item_background_layout);
-        mHolder.mBackground.setBackgroundResource(drawerItemList.get(position).choosen ? R.color.c_t_dark_cyan : R.color.c_white);
+
+//        int choosenColor = if theme dark = c-t-pale-cyan / if light = c-t-sdark-cyan
+
+        int choosenColor = (getPrefTheme().equals("Dark"))? R.color.c_t_pale_cyan : R.color.c_t_sdark_cyan;
+        int colorR = drawerItemList.get(position).choosen ? choosenColor : R.color.c_transparent;
+        mHolder.mBackground.setBackgroundResource(colorR);
+
 
         mHolder.mView.setOnClickListener(new ElliotOnClick(position, getItemCount()));
     }
@@ -55,6 +62,16 @@ public abstract class AdapterDrawerRecyclerViewElliot extends RecyclerView.Adapt
     }
 
     public abstract void onClickElliot(int position, int size);
+
+    private String getPrefTheme(){
+        SharedPreferences pref = context.getSharedPreferences("FoodieRoute", Context.MODE_PRIVATE);
+        String themeSetting = pref.getString("FR_theme","Light");
+        if(themeSetting.equals("Light")){
+            pref.edit().putString("FR_theme","Light");
+            pref.edit().commit();
+        }
+        return themeSetting;
+    }
 
     private static class DrawerItemHolder extends RecyclerView.ViewHolder {
         TextView mText;

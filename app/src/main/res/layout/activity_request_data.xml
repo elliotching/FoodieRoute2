@@ -7,8 +7,7 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_apicall"
-        style="@style/ElliotToolbarStyle"
-        android:theme="@style/ElliotAppBarWhiteText"
+        style="@style/toolbar_style"
         app:title="@string/s_item4_dev" />
 
 
@@ -31,7 +30,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="start" />
+            android:text="start"
+            style="@style/style_for_default_button_and_text_size_no_theme"/>
 
     </LinearLayout>
 
