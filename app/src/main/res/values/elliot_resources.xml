@@ -77,6 +77,7 @@
     <string name="s_title_toolbar_activity_maps">FoodieRoute Map</string>
     <string name="s_title_toolbar_activity_add_food">Add Food</string>
     <string name="s_title_toolbar_activity_food_detail">Food Detail</string>
+    <string name="s_title_toolbar_activity_log_in">Log In</string>
     <string name="s_button_locate_me_activity_food_detail">Locate me</string>
     <string name="s_light_theme_activity_setting">Light Theme</string>
     <string name="s_dark_theme_activity_setting">Dark Theme</string>
@@ -105,20 +106,22 @@
     <string name="s_dialog_title_nothing_here">Nothing Here</string>
     <string name="s_dialog_msg_to_be_implement">To be implement soon.</string>
     <string name="s_dialog_title_warning">Warning</string>
-    <string name="s_dialog_msg_not_logged_in">You are not logged in.</string>
+    <string name="s_dialog_msg_not_logged_in">You have not logged in yet. Please sign up or log in.</string>
+    <string name="s_dialog_msg_kicked_out">Someone else might logged into your account. Please re-log in.</string>
 
     <!--Progress Dialog MSG-->
     <string name="s_prgdialog_sending_msg">Sending...</string>
     <string name="s_prgdialog_retrieving_all_token">Retrieving all logged in users...</string>
     <string name="s_prgdialog_submitting_signup_form">Submitting form...</string>
     <string name="s_prgdialog_update_token">Update notification service...</string>
+    <string name="s_prgdialog_log_in_authenticate">Authenticating...</string>
 
     <!--Progress Dialog TITLE-->
     <string name="s_prgdialog_title_noti_service">Notification Services</string>
     <string name="s_prgdialog_title_send_msg">Send Message</string>
     <string name="s_prgdialog_title_load_user">Load Users</string>
     <string name="s_prgdialog_title_sign_up">Sign Up</string>
-    <!--<string name="s_prgdialog_"></string>-->
+    <string name="s_prgdialog_title_log_in">Log In</string>
     <!--<string name="s_prgdialog_"></string>-->
     <!--<string name="s_prgdialog_"></string>-->
     <!--<string name="s_prgdialog_"></string>-->

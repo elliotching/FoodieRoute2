@@ -1,10 +1,8 @@
 package unimas.fcsit.foodieroute;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Handler;
-import android.view.KeyEvent;
+import android.util.Log;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -15,17 +13,26 @@ import java.util.TimerTask;
 
 public class TimerTask_FR extends java.util.TimerTask {
 
-    final Handler handler;
-    final Timer timer;
-    final int endingTime;
-    static int time = 0;
+    private final Handler handler;
+    private final Timer timer;
+    private final int endingTime;
+    private int runningTime;
+    private final int intervalTime;
+    private static int time = 0;
+    private final TimerTask timerTask = this;
 
+    private InterfaceMyTimerTask myTask;
 
-    TimerTask_FR(int countFor_Seconds) {
+    TimerTask_FR(int doFor_Seconds, InterfaceMyTimerTask myTask) {
         handler = new Handler();
         timer = new Timer();
-        endingTime = countFor_Seconds * 1000;
-        timer.schedule(this, 0, 100);
+        runningTime = 0;
+        endingTime = doFor_Seconds * 1000;
+        intervalTime = 1000;
+
+        this.myTask = myTask;
+
+        timer.schedule(this, 0, intervalTime);
     }
 
     @Override
@@ -38,18 +45,23 @@ public class TimerTask_FR extends java.util.TimerTask {
         @Override
         public void run() {
             try {
-//                time += 100;
-//                if (time == 100) { // starting point
-//                    AsyncRequestData.progressDialog.setMessage("Press again to cancel.");
-//                } else if (time >= endingTime) { // ending point
-//                    AsyncRequestData.progressDialog.setMessage("Loading...");
-//                    timer.cancel();
-//                    time = 0;
-//                }
+                Log.e(timerTask.getClass().getSimpleName(), "timer counting = "+runningTime);
+                myTask.doTask();
+
+                if(( runningTime % 1000 ) == 0){
+                    myTask.secondsPassed(runningTime / 1000);
+                }
+
+                runningTime += intervalTime;
             } catch (Exception e) {
                 // TODO Auto-generated catch block
             }
         }
+    }
+
+    @Override
+    public boolean cancel() {
+        return super.cancel();
     }
 
     private void checkProgDialog(){

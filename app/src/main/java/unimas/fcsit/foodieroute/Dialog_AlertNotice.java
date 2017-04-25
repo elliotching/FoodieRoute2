@@ -46,14 +46,6 @@ public class Dialog_AlertNotice {
         String msg = r.string(_msg);
         String title = r.string(_title);
 
-        msg = msg.replace("<br />", "\n");
-        msg = msg.replace("<br>", "\n");
-        msg = msg.replace("<b>", " ");
-        msg = msg.replace("</b>", " ");
-
-        //to unescape UTF-8 Unicode Character, i.e. convert '\u5c3d' to '尽'.
-        msg = StringEscapeUtils.unescapeJava(msg);
-
         LayoutInflater inflater = LayoutInflater.from(context);
         View v = inflater.inflate(R.layout.dialog_simple_msg_layout, null);
         d.setView(v);

@@ -2,8 +2,9 @@ package unimas.fcsit.foodieroute;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.BundleCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,26 +19,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.loopj.android.http.RequestParams;
+import com.google.firebase.iid.FirebaseInstanceId;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.Timer;
 
-public class FragmentLogIn extends Fragment {
+/**
+ * Created by elliotching on 25-Apr-17.
+ */
 
-    //    public static boolean isOpened = false;
-//    public static String isOpen_StringKey = "isOpen";
-    Context context;
-    Fragment mFragment;
-    AppCompatActivity activity;
-    Timer timer = new Timer();
-    String mToBeDisplayMsg = "";
+public class ActivityLogIn extends AppCompatActivity {
+    Context context = this;
+    AppCompatActivity activity = (AppCompatActivity) context;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private Button mLoginButton;
@@ -45,39 +42,40 @@ public class FragmentLogIn extends Fragment {
     private EditText editTextUsername , editTextPassword;
 
 
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-        context = this.getContext();
-        activity = (AppCompatActivity) context;
-        mFragment = this;
+        new UniversalLayoutInitToolbarAndTheme(activity, R.layout.activity_log_in, R.id.toolbar, false);
 
-        View view = inflater.inflate(R.layout.fragment_one_log_in, container,
-                false);
+        Bundle bundle = getIntent().getExtras();
+        boolean kicked = false;
+        if(bundle != null) {
+            kicked = bundle.getBoolean(ResFR.BUNDLE_KEY_KICKED_OUT, false);
+        }
 
-
-        mLoginButton = (Button) view.findViewById(R.id.m_login_button);
+        if(!kicked)
+            new AsyncCheckLogInStatus(context);
+        else{
+            new Dialog_AlertNotice(context, R.string.s_dialog_title_warning, R.string.s_dialog_msg_kicked_out)
+                    .setPositiveKey(R.string.s_dialog_btn_ok, null);
+        }
+        /*********************************************************
+         * HOW TO GET ARGUMENTS::
+         * RESULT = mFragment.getArguments().get*Boolean( KEY );
+         *   or        <this>.getArguments().get*Boolean( KEY );
+         *********************************************************/
+        mLoginButton = (Button) findViewById(R.id.m_login_button);
         mLoginButton.setOnClickListener(new Click());
 
-        editTextUsername = (EditText) view.findViewById(R.id.edit_text_username);
-        editTextPassword = (EditText) view.findViewById(R.id.edit_text_password);
+        editTextUsername = (EditText) findViewById(R.id.edit_text_username);
+        editTextPassword = (EditText) findViewById(R.id.edit_text_password);
         editTextPassword.setOnEditorActionListener(new Click());
 
-        buttonSignUp = (Button) view.findViewById(R.id.button_sign_up);
+        buttonSignUp = (Button) findViewById(R.id.button_sign_up);
         buttonSignUp.setOnClickListener(new Click());
-//        mLoginButton.setTransformationMethod(null);
-//        this.getArguments().getBoolean()
-//        activity.getSupportActionBar().addOnMenuVisibilityListener();
 
-        activity.supportInvalidateOptionsMenu();
-
-
-        return view;
-    }
-
-    public void stopAsyncTask() {
-        timer.cancel();
     }
 
     private class Click implements View.OnClickListener , TextView.OnEditorActionListener {
@@ -102,6 +100,9 @@ public class FragmentLogIn extends Fragment {
     }
 
     private void doLogin(){
+        Dialog_Progress p = new Dialog_Progress(activity, R.string.s_prgdialog_title_log_in,
+                R.string.s_prgdialog_log_in_authenticate, false);
+
         String username = editTextUsername.getText().toString();
         String password = editTextPassword.getText().toString();
 
@@ -112,7 +113,10 @@ public class FragmentLogIn extends Fragment {
 
             String deviceUUID = ResFR.getPrefString(context, ResFR.FR_DEVICEUUID);
             String device = ResFR.getPrefString(context, ResFR.FR_DEVICE);
-            String token = ResFR.getPrefString(context, ResFR.FR_TOKEN);
+
+            String token = FirebaseInstanceId.getInstance().getToken();
+            ResFR.setPrefString(context, ResFR.FR_TOKEN, token);
+            token = ResFR.getPrefString(context, ResFR.FR_TOKEN);
 
             String[][] data = new String[][]{
                     {"pass","!@#$"},
@@ -123,7 +127,7 @@ public class FragmentLogIn extends Fragment {
                     {"token",token}
             };
 
-            new HTTP_POST(context, data, ResFR.URL_log_in);
+            new HTTP_POST(context, data, ResFR.URL_log_in, p);
         }
     }
 
@@ -147,17 +151,22 @@ public class FragmentLogIn extends Fragment {
     }
 
     private class HTTP_POST implements InterfaceCustomHTTP{
-        HTTP_POST(Context c, String[][] d, String url){
+        Dialog_Progress p;
+        HTTP_POST(Context c, String[][] d, String url, Dialog_Progress p){
+            this.p = p;
             CustomHTTP cc = new CustomHTTP(c, d, url);
             cc.ui = this;
             cc.execute();
         }
         @Override
         public void onCompleted(String result) {
+            p.dismiss();
             try {
                 JSONObject json = new JSONObject(result);
                 String username = json.optString("username");
                 String activated = json.optString("activated");
+
+                ResFR.setPrefString(context, ResFR.FR_USERNAME, username);
             } catch (JSONException e) {
                 e.printStackTrace();
 
@@ -167,6 +176,5 @@ public class FragmentLogIn extends Fragment {
             }
         }
     }
-
 
 }

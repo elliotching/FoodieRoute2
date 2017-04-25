@@ -122,7 +122,7 @@ public class ImageUpload_ {
         @Override
         public void onProgress(long bytesWritten, long totalSize) {
             super.onProgress(bytesWritten, totalSize);
-            Log.d("ElliotOnProgress: ", bytesWritten+" vs "+totalSize);
+            Log.e("ElliotOnProgress: ", bytesWritten+" vs "+totalSize);
         }
 
 

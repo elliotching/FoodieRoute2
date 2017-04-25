@@ -13,6 +13,13 @@ import org.json.JSONObject;
 
 import java.util.UUID;
 
+import static unimas.fcsit.foodieroute.ResFR.DEFAULT_EMPTY;
+import static unimas.fcsit.foodieroute.ResFR.FR_DEVICE;
+import static unimas.fcsit.foodieroute.ResFR.FR_DEVICEUUID;
+import static unimas.fcsit.foodieroute.ResFR.FR_FIREBASE_INSTANCE_ID;
+import static unimas.fcsit.foodieroute.ResFR.FR_TOKEN;
+import static unimas.fcsit.foodieroute.ResFR.FR_USERNAME;
+
 /**
  * Created by elliotching on 02-Mar-17.
  */
@@ -25,7 +32,6 @@ public class ServiceAndroidFirebaseInstanceIDElliot extends FirebaseInstanceIdSe
     static String deviceUUID;
     static String device;
     static String username;
-    static String token;
     static String firebase_IID;
 
     @Override
@@ -36,19 +42,13 @@ public class ServiceAndroidFirebaseInstanceIDElliot extends FirebaseInstanceIdSe
         //Get hold of the registration token
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
 
+        ResFR.setPrefString(context, ResFR.FR_TOKEN, refreshedToken);
+
         //Log the token
-        Log.d(TAG, "Refreshed token: " + refreshedToken);
+        Log.e(TAG, "Refreshed token: " + refreshedToken);
 
-        if(!token.equals(refreshedToken) && refreshedToken != null){
-            token = refreshedToken;
-            pref.edit().putString("FR_token",refreshedToken).commit();
-        }
+        saveTokenToServer(refreshedToken);
 
-        if(refreshedToken == null){
-            new PushNotification(context).createNotification("Token is not available on this device.");
-        }else{
-            saveTokenToServer(refreshedToken);
-        }
     }
 
     private void saveTokenToServer(String token) {
@@ -64,32 +64,19 @@ public class ServiceAndroidFirebaseInstanceIDElliot extends FirebaseInstanceIdSe
                 {"notification_data_body", notification}
         };
 
-        if(username.equals("empty") || deviceUUID.equals("empty") || device.equals("empty")) {
+        if(username.equals(DEFAULT_EMPTY) || deviceUUID.equals(DEFAULT_EMPTY) || device.equals(DEFAULT_EMPTY)) {
 
         }else{
             new HTTP_POST(context, data, ResFR.URL_on_token_refresh);
-        }
-
-        if (deviceUUID.equals("empty")) {
-            SharedPreferences.Editor edit = pref.edit();
-
-            String deviceModel = Build.MODEL;
-            deviceUUID = deviceModel + "-" + UUID.randomUUID().toString();
-            device = deviceModel;
-
-            edit.putString("FR_deviceUUID", deviceUUID);
-            edit.putString("FR_device", device);
-            edit.commit();
         }
     }
 
     public void getAllPref() {
         pref = context.getSharedPreferences("FoodieRoute", Context.MODE_PRIVATE);
-        deviceUUID = pref.getString("FR_deviceUUID", "empty");
-        device = pref.getString("FR_device", "empty");
-        username = pref.getString("FR_username", "empty");
-        token = pref.getString("FR_token", "empty");
-        firebase_IID = pref.getString("FR_firebase_IID", "empty");
+        deviceUUID = pref.getString( FR_DEVICEUUID, DEFAULT_EMPTY);
+        device = pref.getString( FR_DEVICE, DEFAULT_EMPTY);
+        username = pref.getString( FR_USERNAME, DEFAULT_EMPTY);
+        firebase_IID = pref.getString( FR_FIREBASE_INSTANCE_ID, DEFAULT_EMPTY);
     }
 
     class HTTP_POST implements InterfaceCustomHTTP{

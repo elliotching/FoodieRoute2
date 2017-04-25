@@ -3,8 +3,11 @@ package unimas.fcsit.foodieroute;
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.util.Log;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -36,7 +39,6 @@ public class CustomHTTP extends AsyncTask<String, Void, String>
 
     String[][] keyvalues=null;
 
-    JSONObject jsonObject=null;
 
     CustomHTTP(Context c, String[][] keyvalue, String URL){
         context = c;
@@ -44,11 +46,6 @@ public class CustomHTTP extends AsyncTask<String, Void, String>
         this.urlString = URL;
     }
 
-    CustomHTTP(Context c, JSONObject jsonObject, String URL){
-        context = c;
-        this.jsonObject = jsonObject;
-        urlString = URL;
-    }
     @Override
     protected String doInBackground(String... params) {
         try {
@@ -68,19 +65,12 @@ public class CustomHTTP extends AsyncTask<String, Void, String>
             conn.setReadTimeout(READ_TIMEOUT);
             conn.setConnectTimeout(CONNECTION_TIMEOUT);
             conn.setRequestMethod("POST");
-            if(jsonObject != null) {
-                /* usingJSON: if this HTTP calling is to send msg to Firebase FCM ,
-                * and with content of pure JSON only, (without any payload/RequestParams)
-                * then we set up extra header as followed.*/
-                conn.setRequestProperty("Content-Type", "application/json");
-                conn.setRequestProperty("Authorization", ResFR.string(context, R.string.firebase_auth_key));
-            }
 
             // setDoInput and setDoOutput method depict handling of both send and receive
             conn.setDoInput(true);
             conn.setDoOutput(true);
 
-            String query;
+            String query = "";
             if(keyvalues != null) {
                 // Append parameters to URL
                 Uri.Builder builder = new Uri.Builder();
@@ -88,8 +78,6 @@ public class CustomHTTP extends AsyncTask<String, Void, String>
                     builder.appendQueryParameter(keyvalues[i][0], keyvalues[i][1]);
                 }
                 query = builder.build().getEncodedQuery();
-            }else{
-                query = jsonObject.toString();
             }
 
             // Open connection for sending data
@@ -106,7 +94,7 @@ public class CustomHTTP extends AsyncTask<String, Void, String>
             // TODO Auto-generated catch block
             System.err.println("elliot: failed URL");
             e1.printStackTrace();
-            return "exception";
+            return "failed to connect";
         }
 
         try {
@@ -125,17 +113,18 @@ public class CustomHTTP extends AsyncTask<String, Void, String>
                 while ((line = reader.read()) != -1) {
                     result.append((char)line);
                 }
-                System.out.println("Elliot: Out: "+result);
+
                 // Pass data to onPostExecute method
                 return(result.toString());
 
             }else{
-                return(""+response_code+"\nunsuccessful");
+
+                return(""+response_code+": unsuccessful");
             }
 
         } catch (IOException e) {
             e.printStackTrace();
-            return "exception";
+            return "failed to connect";
         } finally {
             conn.disconnect();
         }
@@ -146,14 +135,40 @@ public class CustomHTTP extends AsyncTask<String, Void, String>
     @Override
     protected void onPostExecute(String result) {
 
+        result = result.replace("<br />", "\n");
+        result = result.replace("<br>", "\n");
+        result = result.replace("<b>", "*");
+        result = result.replace("</b>", "*");
+
+        //to unescape UTF-8 Unicode Character, i.e. convert '\u5c3d' to '尽'.
+        result = StringEscapeUtils.unescapeJava(result);
+
         //this method will be running on UI thread
-//        try{
-//            JSONObject d = new JSONObject(result);
-//        }catch (JSONException e) {
-//            e.printStackTrace();
-//        }
         if(ui!=null)ui.onCompleted(result);
-        System.out.println(this.getClass()+": "+result);
+        Log.e(this.getClass().getSimpleName(), result);
     }
+
+
+
+//    private class CreateJSON{
+//        JSONObject json;
+//        CreateJSON(){
+//            json = new JSONObject();
+//        }
+//        public CreateJSON putJSON(String k, String v){
+//            try {
+//                json.put(k, v);
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//            return this;
+//        }
+//
+//        @Override
+//        public String toString() {
+//            json.toString();
+//            return super.toString();
+//        }
+//    }
 
 }

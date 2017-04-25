@@ -169,7 +169,7 @@ public class ActivityAddFood extends AppCompatActivity {
             if(pickedLocation == null){
                 setButtonDefaultTextNoLocationChoosen(buttonChosenLocation1);
             }else{
-                Log.d("Elliot", "returned Location success.");
+                Log.e("Elliot", "returned Location success.");
                 buttonChosenLocation1.setText(""+String.format("%.10f",pickedLocation[0])+" , "+
                         String.format("%.10f",pickedLocation[1]));
             }

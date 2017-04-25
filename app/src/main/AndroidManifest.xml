@@ -87,6 +87,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".ActivityCrop"
             android:screenOrientation="portrait" />
+        <activity android:name=".ActivityLogIn"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".ServiceAndroidFirebaseMessagingElliot">

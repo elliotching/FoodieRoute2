@@ -70,7 +70,7 @@ public class AdapterFoodListingListViewElliot extends BaseAdapter {
 
         // load image from web.
         String imgURL = url_read_image + "?image_name=" + data.get(position).photoName;
-        Log.d("ElliotImageURL", imgURL);
+        Log.e("ElliotImageURL", imgURL);
         Ion.with(context)
                 .load(imgURL)
                 .withBitmap()

@@ -258,11 +258,11 @@ public class Foodie_main extends AppCompatActivity {
             context.startActivity(intent);
         }
         if (item == mMenuItemCheckTkn){
-            new AsyncTokenSaveUpdate(context);
+//            new AsyncCheckLogInStatus(context);
         }
         if(item == showProp){
 //            new Dialog_AlertNotice(context,"Properties", ""+"\n").setPositiveKey("OK",null).show();
-            String rID = FirebaseInstanceId.getInstance().getId();
+            String rID = FirebaseInstanceId.getInstance().getToken();
             System.out.println("Registration_IDS: "+rID);
         }
 

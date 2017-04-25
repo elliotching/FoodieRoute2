@@ -209,7 +209,7 @@ public class ActivityPickImage extends AppCompatActivity {
 
         if ((requestCode == GALLERY_INTENT || requestCode == CAMERA_INTENT) && resultCode == RESULT_OK) {
             Uri imagerUri = CropImage.getPickImageResultUri(context, data);
-            Log.d(getLocalClassName()+"pick image", imagerUri.toString());
+            Log.e(getLocalClassName()+"pick image", imagerUri.toString());
             startCropImageActivity(imagerUri);
         }
 
@@ -340,7 +340,7 @@ public class ActivityPickImage extends AppCompatActivity {
             input = this.getContentResolver().openInputStream(uri);
             Bitmap bitmap = BitmapFactory.decodeStream(input, null, bitmapOptions);
             input.close();
-            Log.d("elliot", "bitmap before resize: SIZE = " + bitmap.getWidth() + " x " + bitmap.getHeight());
+            Log.e("elliot", "bitmap before resize: SIZE = " + bitmap.getWidth() + " x " + bitmap.getHeight());
             if (bitmap.getWidth() < w || bitmap.getHeight() < h) {
                 return new MyBmpInfo(bitmap , "Image is too small" , true);
             } else {

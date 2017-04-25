@@ -25,6 +25,35 @@ pref.edit().putString("FR_deviceUUID", deviceUUID);
 pref.edit().commit();
 
 
+PUT ARGUMENTS VS GET ARGUMENTS:
+!! FRAGMENTS !!
+/***********************************************
+ * HOW TO PUT ARGUMENTS::
+ * Bundle mBundleArguments = new Bundle();
+ * mBundleArguments.put*Boolean(KEY, VALUE);
+ * fragment.setArguments(mBundleArguments);
+ * *********************************************/
+/*********************************************************
+ * HOW TO GET ARGUMENTS::
+ * RESULT = mFragment.getArguments().get*Boolean( KEY );
+ *   or        <this>.getArguments().get*Boolean( KEY );
+ *********************************************************/
+
+
+!! ACTIVITY !!
+Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
+Bundle b = new Bundle();
+b.putInt("key", 1); //Your id
+intent.putExtras(b); //Put your id to your next Intent
+startActivity(intent);
+finish();
+******************************
+Bundle b = getIntent().getExtras();
+b.getInt("key");
+
+
+
+
 
 Button must put style:
 Coloured or non-coloured
@@ -115,13 +144,36 @@ No need theme liao use toolbar style as:
 <android.support.v7.widget.Toolbar
     android:id="@+id/toolbar"
     style="@style/toolbar_style"
-    app:title="@string/s_title_toolbar_activity_food_detail" />
+    app:title="@string/s_title_toolbar_????????" />
 
 
 
 
+CustomHTTP
+CustomHTTP
+CustomHTTP
+CustomHTTP
+CustomHTTP
+CustomHTTP
+CustomHTTP
+private class HTTP_POST implements InterfaceCustomHTTP{
+    HTTP_POST(Context c, String[][] d, String url){
+        CustomHTTP cc = new CustomHTTP(c, d, url);
+        cc.ui = this;
+        cc.execute();
+    }
+    @Override
+    public void onCompleted(String result) {
+
+    }
+}
 
 
+FCM_sent_success:
+{"multicast_id":5988409822444339721,"success":1,"failure":0,"canonical_ids":0,"results":[{"message_id":"0:1493118490644618%69d8bb63f9fd7ecd"}]}
+
+FCM_sent_failed:
+{"multicast_id":5577579200943744439,"success":0,"failure":1,"canonical_ids":0,"results":[{"error":"MissingRegistration"}]}
 
 
 

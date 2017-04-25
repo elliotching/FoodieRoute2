@@ -39,7 +39,7 @@ public class Dialog_CustomNotice {
     }
 
     private void validateActivationCode(){
-        Log.d("Elliot", "Clicked...");
+        Log.e("Elliot", "Clicked...");
     }
 
     private class OnEditorAction implements TextView.OnEditorActionListener{

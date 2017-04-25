@@ -1,9 +1,11 @@
 package unimas.fcsit.foodieroute;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -11,9 +13,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.loopj.android.http.RequestParams;
+import com.google.firebase.iid.FirebaseInstanceId;
 
-import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -25,6 +28,7 @@ public class ActivitySignUp extends AppCompatActivity {
     Context context = this;
     AppCompatActivity activity = this;
 
+    Dialog_Progress pd;
     EditText editUsername, editEmail, editPassword, editConfirmPassword;
     Button signUp;
 
@@ -65,13 +69,15 @@ public class ActivitySignUp extends AppCompatActivity {
         }
 
         void doSubmit(){
-            final Dialog_Progress pd = new Dialog_Progress(activity,
+            pd = new Dialog_Progress(activity,
                     ResFR.string(context, R.string.s_prgdialog_title_sign_up),
                     ResFR.string(context, R.string.s_prgdialog_submitting_signup_form), false);
+
             String username = editUsername.getText().toString();
             String email = editEmail.getText().toString();
             String password = editPassword.getText().toString();
             String confirm = editConfirmPassword.getText().toString();
+
             if(username.matches("")||email.matches("")||password.matches("")||confirm.matches("")){
                 pd.dismiss();
                 new Dialog_AlertNotice(context, "Error", "Please fill in all fields.").setPositiveKey("OK",null);
@@ -80,31 +86,32 @@ public class ActivitySignUp extends AppCompatActivity {
                 new Dialog_AlertNotice(context, "Error", "Password does not matched.").setPositiveKey("OK",null);
             }
             else{
-                RequestParams r = new RequestParams();
-                r.put("pass","!@#$");
-                r.put("table","users_testing");
-                r.put("username",username);
-                r.put("email",email);
-                r.put("password",md5(password));
-                r.put("confirm",md5(confirm));
-                new AsyncHTTPPost(ResFR.URL_reg_user, r, false, new InterfaceAsyncHTTPPost() {
-                    @Override
-                    public void notifyHTTPSuccess(int code, String result) {
-                        pd.dismiss();
-                        new Dialog_AlertNotice(context,"Result", result).setPositiveKey("OK", null);
-                    }
 
-                    @Override
-                    public void notifyHTTPFailure(int code, String result) {
-                        pd.dismiss();
-                        new Dialog_AlertNotice(context,"Error "+code, result).setPositiveKey("OK", null);
-                    }
+                String token = FirebaseInstanceId.getInstance().getToken();
+                ResFR.setPrefString(context, ResFR.FR_TOKEN, token);
+                token = ResFR.getPrefString(context, ResFR.FR_TOKEN);
 
-                    @Override
-                    public void notifyJSONArraySuccess(JSONArray jsonarray) {
+                String deviceUUID = ResFR.getPrefString(context, ResFR.FR_DEVICEUUID);
 
-                    }
-                });
+                String device = Build.MODEL;
+                ResFR.setPrefString(context, ResFR.FR_DEVICE, device);
+                device = ResFR.getPrefString(context, ResFR.FR_DEVICE);
+
+                String[][] data = new String[][]{
+                        {"pass", "!@#$"},
+                        {"username", username},
+                        {"email", email},
+                        {"password", md5(password)},
+                        {"confirm", md5(confirm)},
+                        {"is_seller", "0"},
+                        {"token", token},
+                        {"deviceUUID", deviceUUID},
+                        {"device", device}
+
+
+                };
+
+                new HTTP_POST(context, data, ResFR.URL_sign_up);
             }
         }
     }
@@ -126,5 +133,27 @@ public class ActivitySignUp extends AppCompatActivity {
             e.printStackTrace();
         }
         return "";
+    }
+
+    private class HTTP_POST implements InterfaceCustomHTTP{
+        HTTP_POST(Context c, String[][] d, String url){
+            CustomHTTP cc = new CustomHTTP(c, d, url);
+            cc.ui = this;
+            cc.execute();
+        }
+        @Override
+        public void onCompleted(String result) {
+            pd.dismiss();
+            try {
+                JSONObject json = new JSONObject(result);
+            } catch (JSONException e) {
+                e.printStackTrace();
+
+                String warning = ResFR.string(context, R.string.s_dialog_title_warning);
+                new Dialog_AlertNotice(context, warning, result)
+                        .setPositiveKey(R.string.s_dialog_btn_ok, null);
+            }
+
+        }
     }
 }
